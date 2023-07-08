@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Calculator.dart';
+import 'main_conainer.dart';
+
 class Home extends StatelessWidget {
 
   late String _fakerName;
@@ -65,7 +68,9 @@ class Home extends StatelessWidget {
           Spacer(),
           ElevatedButton(
             onPressed: () {
-              print("Go button clicked");
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                  mainContainer(Calculator())));
             },
             child: Text("Go"),
           )
