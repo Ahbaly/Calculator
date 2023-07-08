@@ -2,7 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+
+  late String _fakerName;
+
+  String get fakerName => _fakerName;
+
+  set fakerName(String value) {
+    _fakerName = value;
+  }
+
+
+  Home(String fakerName){
+    _fakerName = fakerName;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +41,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "fullname",
+                    fakerName,
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                       fontSize: 20,
