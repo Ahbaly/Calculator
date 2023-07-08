@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Result.dart';
+import 'main_conainer.dart';
+
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
 
@@ -75,9 +78,9 @@ class _CalculatorState extends State<Calculator> {
 
                 print("good");
 
-                // Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) =>
-                //         mainContainer(CalculationScreen(number, _operation))));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        mainContainer(Result(number1, number2, _op!))));
               } on Exception {
                 showDialog(
                   barrierDismissible: false,
