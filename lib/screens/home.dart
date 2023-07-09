@@ -1,12 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Modals/Operation.dart';
 import 'Calculator.dart';
 import 'main_conainer.dart';
 
 class Home extends StatelessWidget {
 
   late String _fakerName;
+  late List<Operation> _operationss;
+
+  List<Operation> get operations => _operationss;
+
+  set operations(List<Operation> value) {
+    _operationss = value;
+  }
 
   String get fakerName => _fakerName;
 
@@ -15,8 +23,9 @@ class Home extends StatelessWidget {
   }
 
 
-  Home(String fakerName){
+  Home(String fakerName,List<Operation> operations){
     _fakerName = fakerName;
+    _operationss = operations;
   }
 
   @override
@@ -70,7 +79,7 @@ class Home extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) =>
-                  mainContainer(Calculator())));
+                  mainContainer(Calculator(_operationss))));
             },
             child: Text("Go"),
           )

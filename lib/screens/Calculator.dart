@@ -1,26 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Modals/Operation.dart';
 import 'Result.dart';
 import 'main_conainer.dart';
 
 class Calculator extends StatefulWidget {
-  const Calculator({super.key});
+
+  late List<Operation> _operations;
+
+
+  Calculator(List<Operation> operations){
+    _operations = operations;
+  }
 
   @override
   State<Calculator> createState() => _CalculatorState();
 }
 
 class _CalculatorState extends State<Calculator> {
+  final List<Widget> _items = [];
   final TextEditingController _number1Controller = TextEditingController();
   final TextEditingController _number2Controller = TextEditingController();
+  late List<Operation> _operations ;
+  late String? _op;
 
-  late String? _op = "+";
+  @override
+  void initState() {
+    super.initState();
+
+    _operations = widget._operations;
+    _op = "+";
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    // String? op = "+";
-
     return Container(
       margin: EdgeInsets.all(10.0),
       width: double.infinity,
@@ -36,35 +51,21 @@ class _CalculatorState extends State<Calculator> {
             controller: _number1Controller,
             decoration: InputDecoration(hintText: "First number"),
           ),
-          RadioListTile(
-            title: Text("+"),
-            value: "+",
-            groupValue: _op,
-            onChanged: (value) {
-              setState(() {
-                _op = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: Text("-"),
-            value: "-",
-            groupValue: _op,
-            onChanged: (value) {
-              setState(() {
-                _op = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: Text("*"),
-            value: "*",
-            groupValue: _op,
-            onChanged: (value) {
-              setState(() {
-                _op = value.toString();
-              });
-            },
+          Column(
+            children: [
+              for (Operation op in _operations)
+                RadioListTile(
+                  title: Text(op.value),
+                  value: op.value,
+                  groupValue: _op,
+                  onChanged: (value) {
+                    setState(() {
+                      _op = value.toString();
+                      print(_op);
+                    });
+                  },
+                ),
+            ]
           ),
           TextField(
             controller: _number2Controller,
@@ -94,7 +95,8 @@ class _CalculatorState extends State<Calculator> {
                             Icons.info,
                             color: Colors.black,
                           ),
-                          Text(" You should enter numbers!!!"),],
+                          Text(" You should enter numbers!!!"),
+                        ],
                       ),
                       actions: <Widget>[
                         TextButton(

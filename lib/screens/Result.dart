@@ -15,7 +15,7 @@ class Result extends StatelessWidget {
 
     if (_op == "+")
       _result = _nbr1 + _nbr2;
-    else if (_op == "_")
+    else if (_op == "-")
       _result = _nbr1 - _nbr2;
     else if (_op == "*")
       _result = _nbr1 * _nbr2;
