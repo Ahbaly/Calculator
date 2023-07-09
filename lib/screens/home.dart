@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Modals/Operation.dart';
 import 'Calculator.dart';
+import 'Info.dart';
 import 'main_conainer.dart';
 
 class Home extends StatelessWidget {
@@ -65,7 +66,9 @@ class Home extends StatelessWidget {
               IconButton(
                 color: Colors.blue,
                 onPressed: () {
-                  print("info icon clicked");
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          mainContainer(Info())));;
                 },
                 icon: Icon(
                   Icons.info,
